@@ -20,11 +20,7 @@ const options2 = [
   { key: "10", text: "10", value: "10" },
 ];
 
-const options3 = [
-  { key: "w", text: "Wood", value: "Wood" },
-  { key: "m", text: "Metal", value: "Metal" },
-  { key: "h", text: "Hardware", value: "Hardware" },
-];
+
 
 function Create() {
   return (
