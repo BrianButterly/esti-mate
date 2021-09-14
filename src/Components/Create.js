@@ -29,21 +29,21 @@ function Create() {
   const [material, setMaterial] = useState(0);
 
   function incrementMaterial() {
-    setMaterial(material + 1);
+    setMaterial(material + 20);
   }
 
   function decrementMaterial() {
-    setMaterial(material - 1);
+    setMaterial(material - 20);
   }
 
   const [labour, setLabour] = useState(0);
 
   function incrementLabour() {
-    setLabour(labour + 1);
+    setLabour(labour + 35);
   }
 
   function decrementLabour() {
-    setLabour(labour - 1);
+    setLabour(labour - 35);
   }
 
   return (
@@ -82,7 +82,6 @@ function Create() {
             Remove Labour
           </Button>
         </Form.Field>
-
         <Form.Select
           fluid
           label="Priority"
@@ -90,11 +89,11 @@ function Create() {
           placeholder="Choose priority"
         />
       </Form>
-      <Card centered className="calculator">
+      <Card centered>
         <Card.Content header="Cost Calculator" />
         <Card.Content>Material cost: {material}</Card.Content>
         <Card.Content>Labour cost: {labour} </Card.Content>
-        <Card.Content>All inclusive cost: </Card.Content>
+        <Card.Content>All inclusive cost: {material + labour} </Card.Content>
       </Card>
       <Button inverted type="submit">Submit</Button>
     </div>

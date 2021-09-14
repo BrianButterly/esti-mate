@@ -14,8 +14,6 @@ export default class MenuNav extends Component {
       <div className="menu">
             <img className="logo" src="./logo2.png" alt="logo" />
         <Menu>
-          <Menu.Item>
-          </Menu.Item>
           <Link to="/">
             <Menu.Item
               name="home"
