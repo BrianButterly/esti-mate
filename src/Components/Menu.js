@@ -13,7 +13,7 @@ export default class MenuNav extends Component {
     return (
       <div className="menu">
             <img className="logo" src="./logo2.png" alt="logo" />
-        <Menu>
+        <Menu size="large">
           <Link to="/">
             <Menu.Item
               name="home"

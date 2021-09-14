@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Button, Form, TextArea, Card } from "semantic-ui-react";
+import { useForm } from "react-hook-form";
 
 const options1 = [
   { key: "a", text: "Ashland", value: "Ashland" },
@@ -26,6 +27,10 @@ const options3 = [
 ];
 
 function Create() {
+
+  const { handleSubmit } = useForm();
+  const onSubmit = data => console.log(data);
+
   const [material, setMaterial] = useState(0);
 
   function incrementMaterial() {
@@ -48,7 +53,7 @@ function Create() {
 
   return (
     <div className="form">
-      <Form>
+      <Form onSubmit={handleSubmit(onSubmit)}>
         <Form.Select
           fluid
           label="Building"
