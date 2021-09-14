@@ -1,6 +1,8 @@
 .form {
-  margin-left: 50px;
-  margin-right: 50px;
+  margin: 50px;
+  /* too much maybe */
+  /* animation-duration: 1s;    
+  animation-name: slidein; */
 }
 
 .form_field {
@@ -8,20 +10,28 @@
   padding-bottom: 5px;
 }
 
-.logo {
-   border-radius: 50%;
-   background-color: white;
-   position: relative;
-   top: 140px;
-}
-
 .menu {
-    margin-top: -10%;
-    margin-bottom: 10%;
+  margin-bottom: 100px;
 }
 
+.line1 {
+  animation-duration: 1s;
+  animation-name: slidein;
+}
 
+.line2 {
+  animation-duration: 2s;
+  animation-name: slidein;
+}
 
-@media screen and (max-width: 750px) {
-    
+@keyframes slidein {
+  from {
+    margin-bottom: 100%;
+    width: 300%;
+  }
+
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
 }

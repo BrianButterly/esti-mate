@@ -4,7 +4,7 @@ import MenuNav from "./Components/Menu";
 import Estimates from "./Components/Estimates";
 import Create from "./Components/Create";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import  {Button} from "semantic-ui-react/";
+import {Button, Image} from "semantic-ui-react/";
 
 
 function App() {
@@ -24,9 +24,9 @@ function App() {
 
 const Home = () => (
   <div>
-    <h1>Welcome to Esti-Mate</h1>
-    <h2>The number one tool for repair estimation</h2><br/>
-    <Button inverted type="submit" as="a" href='/create'>Create New Estimate</Button>
+    <h1 className="line1">Welcome to Esti-Mate</h1>
+    <h2 className="line2">The number one tool for repair estimation</h2><br/>
+    <Button circular inverted type="submit" as="a" href='/create'><Image centered src="./logo.png" alt="logo" />Get Started</Button>
   </div>
 );
 

@@ -12,8 +12,12 @@ export default class MenuNav extends Component {
 
     return (
       <div className="menu">
-            <img className="logo" src="./logo2.png" alt="logo" />
-        <Menu size="large">
+        <Menu stackable className="ui top fixed menu" size="large">
+          <Link to="/">
+            <Menu.Item>
+              <img src="/logo.png" alt="logo" />
+            </Menu.Item>
+          </Link>
           <Link to="/">
             <Menu.Item
               name="home"
