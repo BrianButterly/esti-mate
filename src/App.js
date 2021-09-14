@@ -4,6 +4,8 @@ import MenuNav from "./Components/Menu";
 import Estimates from "./Components/Estimates";
 import Create from "./Components/Create";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import  {Button} from "semantic-ui-react/";
+
 
 function App() {
   return (
@@ -22,7 +24,9 @@ function App() {
 
 const Home = () => (
   <div>
-    <h1>Home page</h1>
+    <h1>Welcome to Esti-Mate</h1>
+    <h2>The number one tool for repair estimation</h2><br/>
+    <Button inverted type="submit" as="a" href='/create'>Create New Estimate</Button>
   </div>
 );
 

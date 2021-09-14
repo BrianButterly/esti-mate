@@ -95,7 +95,7 @@ function Create() {
         <Card.Content>Labour cost: {labour} </Card.Content>
         <Card.Content>All inclusive cost: {material + labour} </Card.Content>
       </Card>
-      <Button inverted type="submit">Submit</Button>
+      <Button inverted type="submit" as="a" href="/estimates">Submit</Button>
     </div>
   );
 }
