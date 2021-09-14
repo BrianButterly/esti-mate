@@ -1,5 +1,5 @@
-import React from "react";
-import { Button, Form, TextArea, Checkbox } from "semantic-ui-react";
+import React, { useState } from "react";
+import { Button, Form, TextArea, Card } from "semantic-ui-react";
 
 const options1 = [
   { key: "a", text: "Ashland", value: "Ashland" },
@@ -20,9 +20,32 @@ const options2 = [
   { key: "10", text: "10", value: "10" },
 ];
 
-
+const options3 = [
+  { key: "l", text: "Low", value: "Low" },
+  { key: "h", text: "High", value: "High" },
+];
 
 function Create() {
+  const [material, setMaterial] = useState(0);
+
+  function incrementMaterial() {
+    setMaterial(material + 1);
+  }
+
+  function decrementMaterial() {
+    setMaterial(material - 1);
+  }
+
+  const [labour, setLabour] = useState(0);
+
+  function incrementLabour() {
+    setLabour(labour + 1);
+  }
+
+  function decrementLabour() {
+    setLabour(labour - 1);
+  }
+
   return (
     <div className="form">
       <Form>
@@ -43,20 +66,37 @@ function Create() {
           label="Issue"
           placeholder="Describe the issue..."
         />
-        <Form.Field>
-          <Checkbox className="form_field" label="Wood" />
-          <Checkbox className="form_field" label="Metal" />
-          <Checkbox className="form_field" label="Paint" />
-          <Checkbox className="form_field" label="Drywall" />
+        <Form.Field >
+          <Button positive onClick={incrementMaterial}>
+            Add Material
+          </Button>
+          <Button negative onClick={decrementMaterial}>
+            Remove Material
+          </Button>
         </Form.Field>
+        <Form.Field>
+          <Button positive onClick={incrementLabour}>
+            Add Labour
+          </Button>
+          <Button negative onClick={decrementLabour}>
+            Remove Labour
+          </Button>
+        </Form.Field>
+
         <Form.Select
           fluid
-          label="Labour Hours"
-          options={options2}
-          placeholder="Choose labour hours"
+          label="Priority"
+          options={options3}
+          placeholder="Choose priority"
         />
-        <Button type="submit">Submit</Button>
       </Form>
+      <Card centered className="calculator">
+        <Card.Content header="Cost Calculator" />
+        <Card.Content>Material cost: {material}</Card.Content>
+        <Card.Content>Labour cost: {labour} </Card.Content>
+        <Card.Content>All inclusive cost: </Card.Content>
+      </Card>
+      <Button inverted type="submit">Submit</Button>
     </div>
   );
 }

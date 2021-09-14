@@ -1,6 +1,6 @@
 .form {
-  padding-left: 50px;
-  padding-right: 50px;
+  margin-left: 50px;
+  margin-right: 50px;
 }
 
 .form_field {
@@ -18,6 +18,10 @@
 .menu {
     margin-top: -9%;
     margin-bottom: 10%;
+}
+
+.calculator {
+  
 }
 
 @media screen and (max-width: 750px) {
