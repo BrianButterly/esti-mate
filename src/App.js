@@ -4,6 +4,7 @@ import MenuNav from "./Components/Menu";
 import Estimates from "./Components/Estimates";
 import Create from "./Components/Create";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import 'semantic-ui-css/semantic.css';
 import {Button, Image} from "semantic-ui-react/";
 
 

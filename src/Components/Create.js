@@ -22,9 +22,14 @@ const options3 = [
   { key: "l", text: "Low", value: "Low" },
   { key: "h", text: "High", value: "High" },
 ];
-
+const scrollToTop = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+};
 function Create() {
-  // State
+  // STATE
   const [material, setMaterial] = useState(0);
   const [labour, setLabour] = useState(0);
   const [values, setValues] = useState({
@@ -34,9 +39,9 @@ function Create() {
     priority: "",
     cost: "",
   });
-  const [submitted, setSubmitted] = useState(false);
+  // const [submitted, setSubmitted] = useState(false);
 
-  // Handlers
+  // HANDLERS
   const handleBuildingInputChange = (event) => {
     event.persist();
     setValues((values) => ({
@@ -74,7 +79,7 @@ function Create() {
   };
   const handleSubmit = (event) => {
     event.preventDefault();
-    setSubmitted(true);
+    console.log()
   };
 
   // FUNCTIONS
@@ -90,14 +95,14 @@ function Create() {
   function decrementLabour() {
     setLabour(labour - 35);
   }
-  
-// JSX
+
+  // JSX
   return (
     <div className="form">
       <Form onSubmit={handleSubmit}>
-        {submitted ? (
+        {/* {submitted ? (
           <div class="success-message">Success! Estimate saved</div>
-        ) : null}
+        ) : null} */}
         <Form.Select
           fluid
           label="Building"
@@ -106,6 +111,9 @@ function Create() {
           value={values.building}
           onChange={handleBuildingInputChange}
         />
+        {/* {submitted && !values.building ? (
+          <span className="error">Please select a building</span>
+        ) : null} */}
         <Form.Select
           fluid
           label="Unit"
@@ -114,6 +122,9 @@ function Create() {
           value={values.unit}
           onChange={handleUnitInputChange}
         />
+        {/* {submitted && !values.unit ? (
+          <span className="error">Please select a unit</span>
+        ) : null} */}
         <Form.Field
           control={TextArea}
           label="Issue"
@@ -121,6 +132,9 @@ function Create() {
           value={values.issue}
           onChange={handleIssueInputChange}
         />
+        {/* {submitted && !values.issue ? (
+          <span className="error">Please input an issue</span>
+        ) : null} */}
         <Form.Field>
           <Button type="button" positive onClick={incrementMaterial}>
             Add Material
@@ -145,6 +159,10 @@ function Create() {
           value={values.priority}
           onChange={handlePriorityInputChange}
         />
+        {/* {submitted && !values.priority ? (
+          <span className="error">Please select a priority</span>
+        ) : null} */}
+        <br />
 
         <Card centered>
           <Card.Content header="Cost Calculator" />
@@ -156,7 +174,8 @@ function Create() {
         </Card>
         <Button
           inverted
-          //  as="a" href="/estimates"
+          onClick={scrollToTop}
+           as="a" href="/estimates"
         >
           Submit
         </Button>
@@ -164,5 +183,4 @@ function Create() {
     </div>
   );
 }
-
 export default Create;
