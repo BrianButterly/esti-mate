@@ -1,4 +1,4 @@
-.form {
+.estimate_form {
   margin: 0 10%;
   /* too much maybe?? */
 
@@ -23,7 +23,7 @@
 }
 
 .line2 {
-  animation-duration: 2s;
+  animation-duration: 2s ;
   animation-name: slidein;
   animation-timing-function: ease;
 }
@@ -60,3 +60,4 @@
   margin-right: 30px;
   position: inherit;
 }
+

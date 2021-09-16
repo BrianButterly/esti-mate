@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import { Button, Form, TextArea, Card } from "semantic-ui-react";
+// import useLocalStorage from "../Hooks/useLocalStorage";
 
 const options1 = [
   { key: "a", text: "Ashland", value: "Ashland" },
@@ -22,24 +23,18 @@ const options3 = [
   { key: "l", text: "Low", value: "Low" },
   { key: "h", text: "High", value: "High" },
 ];
-const scrollToTop = () => {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth",
-  });
-};
+
 function Create() {
   // STATE
   const [material, setMaterial] = useState(0);
   const [labour, setLabour] = useState(0);
-  const [values, setValues] = useState({
+  const [values, setValues] = useState('values',{
     building: "",
     unit: "",
     issue: "",
     priority: "",
     cost: "",
   });
-  // const [submitted, setSubmitted] = useState(false);
 
   // HANDLERS
   const handleBuildingInputChange = (event) => {
@@ -79,7 +74,7 @@ function Create() {
   };
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log()
+    console.log(values);
   };
 
   // FUNCTIONS
@@ -96,35 +91,28 @@ function Create() {
     setLabour(labour - 35);
   }
 
+
+
   // JSX
   return (
-    <div className="form">
+    <div className="estimate_form">
       <Form onSubmit={handleSubmit}>
-        {/* {submitted ? (
-          <div class="success-message">Success! Estimate saved</div>
-        ) : null} */}
-        <Form.Select
-          fluid
+        <Form.Field
+          control={TextArea}
           label="Building"
           options={options1}
-          placeholder="Choose a building"
+          placeholder="Input building name"
           value={values.building}
           onChange={handleBuildingInputChange}
         />
-        {/* {submitted && !values.building ? (
-          <span className="error">Please select a building</span>
-        ) : null} */}
-        <Form.Select
-          fluid
+        <Form.Field
+          control={TextArea}
           label="Unit"
           options={options2}
-          placeholder="Choose a unit"
+          placeholder="Input building number"
           value={values.unit}
           onChange={handleUnitInputChange}
         />
-        {/* {submitted && !values.unit ? (
-          <span className="error">Please select a unit</span>
-        ) : null} */}
         <Form.Field
           control={TextArea}
           label="Issue"
@@ -132,9 +120,6 @@ function Create() {
           value={values.issue}
           onChange={handleIssueInputChange}
         />
-        {/* {submitted && !values.issue ? (
-          <span className="error">Please input an issue</span>
-        ) : null} */}
         <Form.Field>
           <Button type="button" positive onClick={incrementMaterial}>
             Add Material
@@ -151,19 +136,14 @@ function Create() {
             Remove Labour
           </Button>
         </Form.Field>
-        <Form.Select
-          fluid
+        <Form.Field
+          control={TextArea}
           label="Priority"
           options={options3}
-          placeholder="Choose priority"
+          placeholder="High or Low?"
           value={values.priority}
           onChange={handlePriorityInputChange}
         />
-        {/* {submitted && !values.priority ? (
-          <span className="error">Please select a priority</span>
-        ) : null} */}
-        <br />
-
         <Card centered>
           <Card.Content header="Cost Calculator" />
           <Card.Content>Material cost: {material}</Card.Content>
@@ -172,10 +152,8 @@ function Create() {
             All inclusive cost: {material + labour}{" "}
           </Card.Content>
         </Card>
-        <Button
-          inverted
-          onClick={scrollToTop}
-           as="a" href="/estimates"
+        <Button inverted 
+        // as="a" href="/estimates"
         >
           Submit
         </Button>
