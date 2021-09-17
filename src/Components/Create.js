@@ -1,5 +1,14 @@
 import React from "react";
-import { Button, Form, Card, Header, Image, Input } from "semantic-ui-react";
+import {
+  Button,
+  Form,
+  Card,
+  Header,
+  Image,
+  Input,
+  Divider,
+  Icon,
+} from "semantic-ui-react";
 import useLocalStorage from "../Hooks/useLocalStorage";
 
 function Create() {
@@ -93,10 +102,12 @@ function Create() {
   return (
     <div className="estimate_form">
       <Image className="esti" size="small" centered src="./logo.png" />
-      <Header as="h2">
-        Repair Cost Estimator
-        <Header.Subheader>Fill in all available fields.</Header.Subheader>
-      </Header>
+      <Divider className="top-divider" horizontal>
+        <Header as="h2">
+          Repair Cost Estimator
+          <Header.Subheader>Fill in all available fields.</Header.Subheader>
+        </Header>
+      </Divider>
       <br />
 
       {/* FORM */}
@@ -137,7 +148,11 @@ function Create() {
               value={values.unit}
             >
               <label>Material Cost per SqFt</label>
-              <Input icon="dollar sign" iconPosition="left" placeholder="Material Cost" />
+              <Input
+                icon="dollar sign"
+                iconPosition="left"
+                placeholder="Material Cost"
+              />
             </Form.Field>
             <Form.Field
               onChange={handleSqftNeededInputChange}
@@ -164,13 +179,22 @@ function Create() {
             value={values.unit}
           >
             <label>Labour Cost Per Hour</label>
-            <Input icon="dollar sign" iconPosition="left" placeholder="Labour Cost" />
+            <Input
+              icon="dollar sign"
+              iconPosition="left"
+              placeholder="Labour Cost"
+            />
           </Form.Field>
         </Form.Group>
-
+        <br />
+        <Divider horizontal>
+          <Header as="h4">
+            <Icon name="calculator" />
+            Cost Calculator
+          </Header>
+        </Divider>
         <Card centered>
-          <Card.Content header="Cost Calculator" />
-          {/* <Card.Content>Material Type: {values.material} </Card.Content> */}
+          {/* <Card.Content header="Cost Calculator" /> */}
           <Card.Content>
             Material Cost: ${values.materialCost * values.sqftNeeded}
           </Card.Content>
@@ -186,10 +210,11 @@ function Create() {
               values.labourHours * values.labourCost}
           </Card.Content>
         </Card>
-        <Button type="submit" inverted>Save</Button>
+        <Button type="submit" inverted>
+          Save
+        </Button>
       </Form>
       <br />
-      {/* <Button inverted onClick={handleClick}>{values.building}</Button> */}
       <br />
     </div>
   );

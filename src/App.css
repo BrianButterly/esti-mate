@@ -70,3 +70,7 @@ div.sub.header {
 ::-webkit-scrollbar {
   display: none;
 }
+
+.menu-logo {
+  margin: -7px;
+}
