@@ -1,15 +1,5 @@
 .estimate_form {
-  margin: 0 10%;
-  /* too much maybe?? */
-
-  /* animation-duration: 2s;
-  animation-name: slidein;
-  animation-timing-function: ease; */
-}
-
-.form_field {
-  padding-right: 15px;
-  padding-bottom: 5px;
+  margin: 0 30%;
 }
 
 .menu {
@@ -40,24 +30,9 @@
   }
 }
 
-.success-message {
-  background-color: #32ab39;
-  padding: 15px;
+input {
   color: black;
-  border-radius: 0.28571429rem;
-  margin: 10px;
-  font-size: 20px;
 }
 
-.error {
-  color: red;
-  font-size: 20px;
-  float: right;
-  /* background-color: rgb(255, 255, 255);
-  border-radius: 5px;
-  padding: 5px; */
-  margin-top: -42px;
-  margin-right: 30px;
-  position: inherit;
-}
+
 
