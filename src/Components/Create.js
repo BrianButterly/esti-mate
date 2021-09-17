@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Form, Card } from "semantic-ui-react";
+import { Button, Form, Card, Header, Image } from "semantic-ui-react";
 import useLocalStorage from "../Hooks/useLocalStorage";
 
 function Create() {
@@ -10,8 +10,8 @@ function Create() {
     building: "",
     unit: "",
     issue: "",
-    materials: "",
-    materialsCost: "",
+    material: "",
+    materialCost: "",
     labourHours: "",
     LabourCost: "",
     priority: "",
@@ -40,18 +40,18 @@ function Create() {
       issue: event.target.value,
     }));
   };
-  const handleMaterialsInputChange = (event) => {
+  const handleMaterialInputChange = (event) => {
     event.persist();
     setValues((values) => ({
       ...values,
-      materials: event.target.value,
+      material: event.target.value,
     }));
   };
-  const handleMaterialsCostInputChange = (event) => {
+  const handleMaterialCostInputChange = (event) => {
     event.persist();
     setValues((values) => ({
       ...values,
-      materialsCost: event.target.value,
+      materialCost: event.target.value,
     }));
   };
   const handleLabourCostInputChange = (event) => {
@@ -62,7 +62,6 @@ function Create() {
     }));
   };
 
-
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(values);
@@ -71,6 +70,12 @@ function Create() {
   // JSX
   return (
     <div className="estimate_form">
+      <Image className="esti" size="small" centered src="./logo.png" />
+      <Header as="h2">
+        Repair Cost Estimator
+        <Header.Subheader>Fill in all available fields.</Header.Subheader>
+      </Header>
+      <br />
       <Form onSubmit={handleSubmit}>
         <Form.Group widths="equal">
           <Form.Field
@@ -90,13 +95,19 @@ function Create() {
           <input placeholder="Issue" />
         </Form.Field>
         <Form.Group widths="equal">
-          <Form.Field onChange={handleMaterialsInputChange} value={values.materials}>
-            <label>Materials</label>
-            <input placeholder="Materials" />
+          <Form.Field
+            onChange={handleMaterialInputChange}
+            value={values.material}
+          >
+            <label>Material</label>
+            <input placeholder="Material" />
           </Form.Field>
-          <Form.Field onChange={handleMaterialsCostInputChange} value={values.unit}>
-            <label>Materials Cost</label>
-            <input placeholder="Materials Cost" />
+          <Form.Field
+            onChange={handleMaterialCostInputChange}
+            value={values.unit}
+          >
+            <label>Material Cost</label>
+            <input placeholder="Material Cost" />
           </Form.Field>
         </Form.Group>
         <Form.Group widths="equal">
@@ -107,7 +118,10 @@ function Create() {
             <label>Labour Hours</label>
             <input placeholder="Labour Hrs" />
           </Form.Field>
-          <Form.Field onChange={handleLabourCostInputChange} value={values.unit}>
+          <Form.Field
+            onChange={handleLabourCostInputChange}
+            value={values.unit}
+          >
             <label>Labour Cost Per Hour</label>
             <input placeholder="Labour Cost" />
           </Form.Field>
@@ -118,21 +132,15 @@ function Create() {
           <Card.Content header="Cost Calculator" />
           {/* <Card.Content>Material cost: {material}</Card.Content>
           <Card.Content>Labour cost: {labour} </Card.Content> */}
-          <Card.Content>Material Type: {values.materials} </Card.Content>
-          <Card.Content>Material Cost: {values.materialsCost} </Card.Content>
+          <Card.Content>Material Type: {values.material} </Card.Content>
+          <Card.Content>Material Cost: {values.materialCost} </Card.Content>
           <Card.Content>Labour Cost: {values.labourCost} </Card.Content>
-          <Card.Content value={values.cost}>
-            All inclusive cost:
-          </Card.Content>
+          <Card.Content value={values.cost}>All inclusive cost:</Card.Content>
         </Card>
-        <Button
-          inverted
-          // as="a" href="/estimates"
-        >
-          Save
-        </Button>
+        <Button inverted>Save</Button>
       </Form>
-      <h2>{}</h2>
+      <br />
+      <br />
     </div>
   );
 }
