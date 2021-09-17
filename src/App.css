@@ -1,9 +1,9 @@
 .estimate_form {
-  margin: 0 30%;
+  margin: 0 25%;
 }
 
 .menu {
-  margin-bottom: 100px;
+  margin-bottom: 80px;
 }
 
 .line1 {
@@ -32,11 +32,41 @@
 
 input {
   color: black;
+  /* animation-duration: 1s;
+  animation-name: slidein;
+  animation-timing-function: ease; */
 }
 
-img.ui.centered.image.esti {
-  background-color: white;
-  border: 1px solid white;
+label {
+  animation-duration: 2s;
+  animation-name: slidein;
+  animation-timing-function: ease;
+}
+
+img.ui.small.centered.image.esti {
+  background-color: #fff;
   border-radius: 50%;
   margin-top: -70px;
+}
+
+/* .container {
+  background-color: white;
+  border-radius: .28571429rem;
+  padding: 5px
+} */
+
+h2.ui.header{
+  animation-duration: 2s;
+  animation-name: slidein;
+  animation-timing-function: ease;
+}
+
+div.sub.header {
+  animation-duration: 2s;
+  animation-name: slidein;
+  animation-timing-function: ease;
+}
+
+::-webkit-scrollbar {
+  display: none;
 }
