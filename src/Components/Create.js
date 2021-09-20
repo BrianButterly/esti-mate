@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Button,
   Form,
@@ -14,7 +14,8 @@ import useLocalStorage from "../Hooks/useLocalStorage";
 function Create() {
   // STATE
   const [values, setValues] = useLocalStorage("values", {
-    building: "",
+    //WAS TRYING TO USE LOCAL STORAGE TO SAVE EACH ESTIMATE BUT KEPT IT HERE FOR THE FORM INFO
+    building: "", //TO ADD IT TO THE CARD AT THE BOTTOM.
     unit: "",
     issue: "",
     material: "",
@@ -26,82 +27,102 @@ function Create() {
   });
 
   // HANDLERS
-  const handleBuildingInputChange = (event) => {
-    event.persist();
+  const handleBuildingInputChange = (e) => {
+    e.persist();
     setValues((values) => ({
       ...values,
-      building: event.target.value,
+      building: e.target.value,
     }));
   };
-  const handleUnitInputChange = (event) => {
-    event.persist();
+  const handleUnitInputChange = (e) => {
+    e.persist();
     setValues((values) => ({
       ...values,
-      unit: event.target.value,
+      unit: e.target.value,
     }));
   };
-  const handleIssueInputChange = (event) => {
-    event.persist();
+  const handleIssueInputChange = (e) => {
+    e.persist();
     setValues((values) => ({
       ...values,
-      issue: event.target.value,
+      issue: e.target.value,
     }));
   };
-  const handleMaterialInputChange = (event) => {
-    event.persist();
+  const handleMaterialCostInputChange = (e) => {
+    e.persist();
     setValues((values) => ({
       ...values,
-      material: event.target.value,
+      materialCost: e.target.value,
     }));
   };
-  const handleMaterialCostInputChange = (event) => {
-    event.persist();
+  const handleSqftNeededInputChange = (e) => {
+    e.persist();
     setValues((values) => ({
       ...values,
-      materialCost: event.target.value,
+      sqftNeeded: e.target.value,
     }));
   };
-  const handleLabourHoursInputChange = (event) => {
-    event.persist();
+  const handleLabourHoursInputChange = (e) => {
+    e.persist();
     setValues((values) => ({
       ...values,
-      labourHours: event.target.value,
+      labourHours: e.target.value,
     }));
   };
-  const handleLabourCostInputChange = (event) => {
-    event.persist();
+  const handleLabourCostInputChange = (e) => {
+    e.persist();
     setValues((values) => ({
       ...values,
-      labourCost: event.target.value,
+      labourCost: e.target.value,
     }));
   };
-  const handleSqftNeededInputChange = (event) => {
-    event.persist();
-    setValues((values) => ({
-      ...values,
-      sqftNeeded: event.target.value,
-    }));
-  };
-  const handleInclusiveCostChange = (event) => {
-    event.persist();
-    setValues((values) => ({
-      ...values,
-      inclusiveCost: event.target.value,
-    }));
-  };
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault();
     console.log(values);
   };
+  const [inputList, setInputList] = useState([
+    { material: "", materialCost: "", sqft: "" },
+  ]);
 
-  // const handleClick = () => {
-  //   console.log({values})
-  // }
+  /////////////////////////////////////////////////////////
+
+  //  TRYING TO ADD LINE ITEMS WITH THE LOGIC OF ADDING THE INPUTS TOGETHER.
+
+  // handle input change
+  // const handleInputChange = (e, index) => {
+  //   const { name, values } = e.target;
+  //   const list = [...inputList];
+  //   list[index][name] = values;
+  //   setInputList(list);
+  // };
+
+  // handle click of the Add button
+  const handleAddClick = () => {
+    setInputList([...inputList, { material: "", materialCost: "", sqft: "" }]);
+  };
+  // handle click of the Remove button
+  const handleRemoveClick = (index) => {
+    const list = [...inputList];
+    list.splice(index, 1);
+    setInputList(list);
+  };
+
+  ////////////////////////////////////////////////////////////
 
   // JSX
   return (
     <div className="estimate_form">
-      <Image className="esti" size="small" centered src="./logo.png" />
+      <Button
+        style={{ marginTop: "50px" }}
+        size="tiny"
+        circular
+        inverted
+        type="submit"
+        as="a"
+        href="/"
+      >
+        <Image centered src="./logo.png" alt="logo" />
+      </Button>
       <Divider className="top-divider" horizontal>
         <Header as="h2">
           Repair Cost Estimator
@@ -111,7 +132,7 @@ function Create() {
       <br />
 
       {/* FORM */}
-      <Form size="small" onSubmit={handleSubmit}>
+      <Form size="larg" onSubmit={handleSubmit}>
         {/* LINE 1 */}
         <Form.Group widths="equal">
           <Form.Field
@@ -133,35 +154,62 @@ function Create() {
           <Input placeholder="Issue" />
         </Form.Field>
         <br />
+
         {/* LINE 3 */}
-        <div className="container">
-          <Form.Group widths="equal">
-            <Form.Field
-              onChange={handleMaterialInputChange}
-              value={values.material}
-            >
-              <label>Material</label>
-              <input placeholder="Material" />
-            </Form.Field>
-            <Form.Field
-              onChange={handleMaterialCostInputChange}
-              value={values.unit}
-            >
-              <label>Material Cost per SqFt</label>
-              <Input
-                icon="dollar sign"
-                iconPosition="left"
-                placeholder="Material Cost"
-              />
-            </Form.Field>
-            <Form.Field
-              onChange={handleSqftNeededInputChange}
-              value={values.unit}
-            >
-              <label>SqFt Needed</label>
-              <input placeholder="SqFt Needed" />
-            </Form.Field>
-          </Form.Group>
+        <div className="App">
+          {inputList.map((values, i) => {
+            return (
+              <div>
+                <Form.Group widths="equal">
+                  <Form.Field value={values.material}>
+                    <label>Material</label>
+                    <Input name="material" placeholder="Material" />
+                  </Form.Field>
+                  <Form.Field
+                    value={values.materialCost}
+                    onChange={handleMaterialCostInputChange}
+                  >
+                    <label>Material Cost per SqFt</label>
+                    <Input
+                      type="number"
+                      icon="dollar sign"
+                      iconPosition="left"
+                      name="Material Cost"
+                      placeholder="Material Cost"
+                    />
+                  </Form.Field>
+                  <Form.Field
+                    value={values.sqft}
+                    onChange={handleSqftNeededInputChange}
+                  >
+                    <label>SqFt Needed</label>
+                    <Input
+                      type="number"
+                      name="SqFt Needed"
+                      placeholder="SqFt Needed"
+                    />
+                  </Form.Field>
+                  <div className="add_remove_btns">
+                    <br />
+                    {inputList.length - 1 === i && (
+                      <Button size="mini" positive onClick={handleAddClick}>
+                        Add
+                      </Button>
+                    )}
+                    {inputList.length !== 1 && (
+                      <Button
+                        size="mini"
+                        negative
+                        onClick={() => handleRemoveClick(i)}
+                      >
+                        Remove
+                      </Button>
+                    )}
+                  </div>
+                </Form.Group>
+              </div>
+            );
+          })}
         </div>
         <br />
 
@@ -169,17 +217,18 @@ function Create() {
         <Form.Group widths="equal">
           <Form.Field
             onChange={handleLabourHoursInputChange}
-            value={values.building}
+            value={values.labourHours}
           >
             <label>Labour Hours</label>
-            <Input placeholder="Labour Hrs" />
+            <Input type="number" placeholder="Labour Hrs" />
           </Form.Field>
           <Form.Field
             onChange={handleLabourCostInputChange}
-            value={values.unit}
+            value={values.labourCost}
           >
             <label>Labour Cost Per Hour</label>
             <Input
+              type="number"
               icon="dollar sign"
               iconPosition="left"
               placeholder="Labour Cost"
@@ -194,23 +243,23 @@ function Create() {
           </Header>
         </Divider>
         <Card centered>
-          {/* <Card.Content header="Cost Calculator" /> */}
           <Card.Content>
             Material Cost: ${values.materialCost * values.sqftNeeded}
           </Card.Content>
           <Card.Content>
             Labour Cost: ${values.labourHours * values.labourCost}
           </Card.Content>
-          <Card.Content
-            onChange={handleInclusiveCostChange}
-            value={values.inclusiveCost}
-          >
+          <Card.Content value={values.inclusiveCost}>
             All inclusive cost: $
             {values.materialCost * values.sqftNeeded +
               values.labourHours * values.labourCost}
           </Card.Content>
         </Card>
-        <Button type="submit" inverted>
+        <Button
+          onClick={() => window.location.reload(false)}
+          type="submit"
+          inverted
+        >
           Save
         </Button>
       </Form>
