@@ -14,8 +14,7 @@ import useLocalStorage from "../Hooks/useLocalStorage";
 function Create() {
   // STATE
   const [values, setValues] = useLocalStorage("values", {
-    //WAS TRYING TO USE LOCAL STORAGE TO SAVE EACH ESTIMATE BUT KEPT IT HERE FOR THE FORM INFO
-    building: "", //TO ADD IT TO THE CARD AT THE BOTTOM.
+    building: "",                 
     unit: "",
     issue: "",
     material: "",
@@ -156,7 +155,7 @@ function Create() {
         <br />
 
         {/* LINE 3 */}
-        <div className="App">
+        <div>
           {inputList.map((values, i) => {
             return (
               <div>
