@@ -14,7 +14,7 @@ import useLocalStorage from "../Hooks/useLocalStorage";
 function Create() {
   // STATE
   const [values, setValues] = useLocalStorage("values", {
-    building: "",                 
+    building: "",
     unit: "",
     issue: "",
     material: "",
@@ -147,14 +147,14 @@ function Create() {
           </Form.Field>
         </Form.Group>
 
-        {/* LINE 2 */}
+        {/* NEXT LINE */}
         <Form.Field onChange={handleIssueInputChange} value={values.issue}>
           <label>Issue</label>
           <Input placeholder="Issue" />
         </Form.Field>
         <br />
 
-        {/* LINE 3 */}
+        {/* NEXT LINE */}
         <div>
           {inputList.map((values, i) => {
             return (
@@ -212,7 +212,7 @@ function Create() {
         </div>
         <br />
 
-        {/* LINE 6 */}
+        {/* NEXT LINE */}
         <Form.Group widths="equal">
           <Form.Field
             onChange={handleLabourHoursInputChange}
@@ -235,12 +235,14 @@ function Create() {
           </Form.Field>
         </Form.Group>
         <br />
+        {/* NEXT LINE */}
         <Divider horizontal>
           <Header as="h4">
             <Icon name="calculator" />
             Cost Calculator
           </Header>
         </Divider>
+        {/* NEXT LINES */}
         <Card centered>
           <Card.Content>
             Material Cost: ${values.materialCost * values.sqftNeeded}
