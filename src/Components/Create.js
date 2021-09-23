@@ -1,3 +1,6 @@
+
+// IN THE REAL WORLD I WOULD STRUCTURE THIS BETTER AND NOT HAVE IT ALL IN ONE FILE!
+
 import React, { useState } from "react";
 import {
   Button,
@@ -79,6 +82,7 @@ function Create() {
     e.preventDefault();
     console.log(values);
   };
+  // FOR MULTIPLE LINE ITEMS
   const [inputList, setInputList] = useState([
     { material: "", materialCost: "", sqft: "" },
   ]);
